@@ -1,0 +1,23 @@
+import sqlite3
+
+def fetch_contacts():
+    # Connect to the SQLite database (or change connection settings for another DB)
+    conn = sqlite3.connect("contacts.db")
+    cursor = conn.cursor()
+    
+    # Query to fetch name, address, telephone number, and email
+    cursor.execute("SELECT name, address, telephone, email FROM contacts")
+    
+    # Fetch all results
+    contacts = cursor.fetchall()
+    
+    # Print the results
+    for contact in contacts:
+        name, address, telephone, email = contact
+        print(f"Name: {name}\nAddress: {address}\nTelephone: {telephone}\nEmail: {email}\n---")
+    
+    # Close the connection
+    conn.close()
+
+# Run the function
+fetch_contacts()
